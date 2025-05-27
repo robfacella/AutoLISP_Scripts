@@ -18,7 +18,30 @@
  (princ "\n")
 
  ;; Create a CSV line for Start and End points; adding BC or TC 
+ (setq thisLine (cdr (assoc 10 e)))
+ ; Split the list and rejoin as a string in CSV format.
+ (setq thisLine (c:lst2str thisLine ","))
+ ; Add the presumed Label for Bottom Curb
+ (setq theLine (strcat thisLine",BC"))
+ (princ theLine)
+ (princ "\n^That Line..")
+ (princ "\n")
+ (write-line theLine f)
 
+ (setq thisLine (cdr (assoc 11 e)))
+ ; Split the list and rejoin as a string in CSV format.
+ (setq thisLine (c:lst2str thisLine ","))
+ ; Add the presumed Label for Top of Curb
+ (setq theLine (strcat thisLine",TC"))
+ (princ theLine)
+ (princ "\n^That Line..")
+ (princ "\n")
+ (write-line theLine f)
+
+ (princ "\n")
+ (close f);close file
+ (princ "\n")
+ 
 );EoF
 
 ;; RTOS List to String
