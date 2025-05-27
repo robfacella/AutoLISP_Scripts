@@ -13,6 +13,12 @@
  (princ cdr (assoc 11 e)))
  (princ "\n")
 
+ ; Choose a file to Append Data to; Rename, move, or delete between sessions.
+ (setq f (open "C:\\Users\robfacella\Documents\Dev\Example.csv" "a"))
+ (princ "\n")
+
+ ;; Create a CSV line for Start and End points; adding BC or TC 
+
 );EoF
 
 ;; RTOS List to String
