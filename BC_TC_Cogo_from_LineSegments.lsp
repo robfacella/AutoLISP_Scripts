@@ -13,3 +13,17 @@
  (princ cdr (assoc 11 e)))
  (princ "\n")
 
+);EoF
+
+;; RTOS List to String
+;; Concatenates each String after recasting a supplied list of REAL Varriables, separated by a delimeter parameter
+;; lst - [lst] List of REALs to Convert and Concatenate.
+;; del - [str] Delimeter string to separate each item.
+(defun c:lst2str ( lst del )
+ (if (cdr lst)
+  ;(strcat (car list) del (c:lst2str (cdr lst) del));if rtos wasn't needed here
+  (strcat (rtos(car list)) del (c:lst2str (cdr lst) del))
+  ;(car lst);if rtos not needed
+  (rtos(car lst))
+ );endIF
+);EoF
