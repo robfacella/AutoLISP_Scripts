@@ -3,7 +3,7 @@
   (progn 
    (setq start_time (getvar "MILLISECS")) ;;Start-Time
 
-   (command "saveall")
+   (c:SaveAll) ;;Syntax for the AutoLISP extension function
    
    (setq end_time (getvar "MILLISECS")) ;;End Time
    (setq elapsed_time (- end_time start_time))
