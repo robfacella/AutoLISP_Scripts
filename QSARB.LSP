@@ -1,11 +1,11 @@
 ;;; qsave all
 (defun c:QSARB() ;; Quick SaveAll Reboot
-  (progn 
-   (progn
+  (progn ;;Main
+   (progn ;;User Input
      (setq sleepSecBeforeRB "10")
      (setq temp (getint (strcat "\nHow long to sleep prior to reboot? ")))
      (if (= temp)
-       (setq sleepSecBeforeRB (itoa temp)))
+       (setq sleepSecBeforeRB (itoa temp))) ;; need error handling still
    );;End User Entry Progn
    (setq start_time (getvar "MILLISECS")) ;;Start-Time
    (progn ;; Save-All and Time Stamp
@@ -19,10 +19,11 @@
       (command "CLOSEALLOTHER") ;; Do this Before Closing Host Drawing
    );;End Close Others
    (progn ;;Launch Reboot and Close Local
-;;ToDo
+     (setq RBTack (strcat "/r /t " sleepSecBeforeRB)) ;;Combine Arguements for [Reboot] [Time Delay of ____]
+     (startapp "shutdown.exe" RBTack) ;;Launch Windows Reboot
      (setq elapsed_time (- end_time start_time))
      (princ (strcat "\nCode execution time: " (rtos elapsed_time 2 0) " milliseconds"))
      (command "CLOSE");;Finally Close Host Drawing
    );;End RB
-  );;End Progn
+  );;End Main Progn
 );; End QSARB
