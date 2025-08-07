@@ -1,5 +1,5 @@
-$totalSeconds = $($args[0])	#Set time to wait from command line args
-$currentCount = $totalSeconds	#Countdown from, preserving $totalSenconds args if needed later.
+$totalSeconds = $($args[0])		#Set time to wait from command line args
+$currentCount = [int]$totalSeconds	#Countdown from int value of totalSeconds. (args was fine, but AutoLisp didn't like String of Int being passed here)
 
 while ($currentCount -gt 0){
     Write-Host "$currentCount seconds remaining..."
