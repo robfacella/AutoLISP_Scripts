@@ -3,7 +3,7 @@
   (vl-file-delete flagFile)                     ;; Delete the flag File if it already exists from a prior run.
   (princ "\nWhy are you running?!")
   (progn ;; Run Powershell Script, wait for it @ 0.1 second increments until the flag file is created, then continue
-        (startapp "C:/Windows/system32/WindowsPowerShell/v1.0/powershell.exe" "-File C:/Users/RFacella/Documents/Dev/powershell_complete.flag 24") ;;25 would've been funnier
+        (startapp "C:/Windows/system32/WindowsPowerShell/v1.0/powershell.exe" "-File C:/Users/RFacella/Documents/Dev/Countdown_X 24") ;;25 would've been funnier
         (while (not (findfile flagFile))        ;; *WARNING - Too Short of a delay could cause CPU to seize!*
             (command "DELAY" 100)               ;; Pause for 100 miliseconds.
         )                                       ;; Loop and check for file again.
