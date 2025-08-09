@@ -20,4 +20,16 @@ To adjust AutoPlay settings for a specific site on Firefox:
 - A few items down should be Autoplay, switch it from "Use Default" to "Allow Audio & Video"
 - You *should* be good. Close "Page Info" and disable the Menu-Bar if you had to Enable it to get this far, C.Y.A.
 
+#### Viewing all Autoplay Overrides for FFox
+Want to view and manage all sites which have different permissions?
+- 'Hamburger Menu Button' >
+-  Settings >
+-  Privacy & Security >
+- (Scroll Down to "Permissions")
+- Autoplay >  <Settings>
+From here you can set your Default Permission for all webssites
+& view/manage your exceptions list.
+However, this doesn't seem to offer the ability to append to those Exceptions; probably a safety concern.
+
 #### The Code
+Will be appended soon... probably as a .lsp file, hence the subDirectory for this readme..
