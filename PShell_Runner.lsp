@@ -9,5 +9,5 @@
         )                                       ;; Loop and check for file again.
         (vl-file-delete flagFile)               ;; Optional - Cleanup by deleting the flagFile on the fly
         (princ "\nPowerShell script finished.") ;; That's Powershell done'
-  )
+  (princ))
 )
