@@ -1,27 +1,25 @@
-;;; qsave all
-(defun c:QSARB() ;; Quick SaveAll Reboot
+;;;; Quick-Save All, Reboot
+(defun c:QSARB()
   (progn ;;Main
    (progn ;;User Input
-     (setq sleepSecBeforeRB "10")
      (setq temp (getint (strcat "\nHow long to sleep prior to reboot? ")))
      (if (= temp)
-       (setq sleepSecBeforeRB (itoa temp))) ;; need error handling still
+       (setq sleepSecBeforeRB (itoa temp))) ;Need error handling for getint
    );;End User Entry Progn
-   (setq start_time (getvar "MILLISECS")) ;;Start-Time
-   (progn ;; Save-All and Time Stamp
-     (c:SaveAll) ;;Syntax for the AutoLISP extension function
-     (setq end_time (getvar "MILLISECS")) ;;End Time
-     (setq elapsed_time (- end_time start_time))
-    
-     (princ (strcat "\nTime to save-all: " (rtos elapsed_time 2 0) " milliseconds")) ;;wysiwyg
+   (setq start_time (getvar "MILLISECS")) ;Start-Time from SystemClock
+   (progn ;; Save-All & Time Stamp
+     (c:SaveAll) ;Syntax for the AutoLISP Extension function
+     (setq end_time (getvar "MILLISECS")) ;End-Time from SystemClock
+     (setq elapsed_time (- end_time start_time)) ; elapsed=(end-start)
+     (princ (strcat "\nSaved-All in: " (rtos elapsed_time 2 0) " milliseconds")) ;decMode, 0digit
    );;End Save-ALL
    (progn ;;Close-All Others
-      (command "CLOSEALLOTHER") ;; Do this Before Closing Host Drawing
-   );;End Close Others
-   (progn ;;Launch Reboot and Close Local
-     (setq RBTack (strcat "/r /t " sleepSecBeforeRB)) ;;Combine Arguements for [Reboot] [Time Delay of ____]
-     (startapp "shutdown.exe" RBTack) ;;Launch Windows Reboot
-     (setq elapsed_time (- end_time start_time))
+      (command "CLOSEALLOTHER") ; Do this Before Closing Host Drawing
+   );;End Close-Others ; If host Drawing Closes before launching Reboot the Script stops running itself too.
+   (progn ;;Launch Reboot & Close Local Host dwg
+     (setq RBTack (strcat "/r /t " sleepSecBeforeRB)) ;Combine Args for [Reboot] [Time Delay of _]
+     (startapp "shutdown.exe" RBTack) ;Launch Windows Reboot
+     (setq elapsed_time (- end_time start_time)) ;(below) print in decMode, 0digit
      (princ (strcat "\nCode execution time: " (rtos elapsed_time 2 0) " milliseconds"))
      (command "CLOSE");;Finally Close Host Drawing
    );;End RB
